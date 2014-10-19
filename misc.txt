@@ -1,0 +1,18 @@
+This key can be deployed in your Android application.
+API requests are sent directly to Google from your client Android device. Google verifies that each request originates from an Android application that matches one of the certificate SHA1 fingerprints and package names listed below. You can discover the SHA1 fingerprint of your developer certificate using the following command:
+
+keytool -list -v -keystore mystore.keystore
+
+ACCEPT REQUESTS FROM AN ANDROID APPLICATION WITH ONE OF THE CERTIFICATE FINGERPRINTS AND PACKAGE NAMES LISTED BELOW
+One SHA1 certificate fingerprint and package name (separated by a semicolon) per line. Example: 45:B5:E4:6F:36:AD:0A:98:94:B4:02:66:2B:12:17:F2:56:26:A0:E0;com.example
+
+62:7F:9A:71:F9:0F:45:8D:3D:ED:C9:35:9D:A6:20:71:3A:76:22:09;dk.mreib.nicechat
+
+
+Key for Android applications
+
+API KEY AIzaSyBk-dHLq8_ws-Ee9_36OlMmZbdsiY7Q0E0 ANDROID APPLICATIONS  
+62:7F:9A:71:F9:0F:45:8D:3D:ED:C9:35:9D:A6:20:71:3A:76:22:09;dk.mreib.nicechat
+ ACTIVATION DATE Oct 19, 2014 7:40 AM ACTIVATED BY michael.reib@gmail.com (you)
+
+
