@@ -4,6 +4,12 @@ package dk.mreib.nicechat;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.app.ListFragment;
+import android.app.LoaderManager;
+import android.content.CursorLoader;
+import android.content.Loader;
+import android.database.Cursor;
+import android.provider.ContactsContract;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -27,7 +33,8 @@ import android.widget.Toast;
  * See the <a href="https://developer.android.com/design/patterns/navigation-drawer.html#Interaction">
  * design guidelines</a> for a complete explanation of the behaviors implemented here.
  */
-public class NavigationDrawerFragment extends Fragment {
+public class NavigationDrawerFragment extends ListFragment implements
+        LoaderManager.LoaderCallbacks<Cursor> {
 
     /**
      * Remember the position of the selected item.
@@ -278,5 +285,30 @@ public class NavigationDrawerFragment extends Fragment {
          * Called when an item in the navigation drawer is selected.
          */
         void onNavigationDrawerItemSelected(int position);
+    }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        // TBD
+
+
+        String[] projection = {ContactsContract.Contacts._ID, ContactsContract.Contacts.DISPLAY_NAME};
+        String selection = ContactsContract.Contacts.HAS_PHONE_NUMBER + "=1";
+        String[] selectionArgs = null;
+        String orderBy = ContactsContract.Contacts.DISPLAY_NAME + " ASC";
+
+        // CursorLoader introduced in Honeycomb (3.0, API11)
+        return new CursorLoader(getActivity(), ContactsContract.Contacts.CONTENT_URI, projection, null, null, null);
+
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+        // TBD
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+        // TBD
     }
 }
