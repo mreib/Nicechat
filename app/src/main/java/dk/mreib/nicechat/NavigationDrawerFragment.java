@@ -28,6 +28,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.io.IOException;
+
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
  * See the <a href="https://developer.android.com/design/patterns/navigation-drawer.html#Interaction">
@@ -81,6 +83,7 @@ public class NavigationDrawerFragment extends ListFragment implements
             mCurrentSelectedPosition = savedInstanceState.getInt(STATE_SELECTED_POSITION);
             mFromSavedInstanceState = true;
         }
+
 
         // Select either the default item (0) or the last selected item.
         selectItem(mCurrentSelectedPosition);

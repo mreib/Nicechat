@@ -8,6 +8,7 @@ import android.app.FragmentManager;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -18,10 +19,18 @@ import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import org.jivesoftware.smack.SmackException;
+import org.jivesoftware.smack.XMPPException;
+
+import java.io.IOException;
+
+import javax.net.SocketFactory;
+
 
 public class HovedActivity extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
+    private static final String TAG ="DAVS:" ;
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
@@ -31,11 +40,11 @@ public class HovedActivity extends Activity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hoved);
+
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -45,6 +54,9 @@ public class HovedActivity extends Activity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
+
+
     }
 
     @Override
@@ -54,6 +66,12 @@ public class HovedActivity extends Activity
         fragmentManager.beginTransaction()
                 .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
                 .commit();
+
+        MinSender minSender = new MinSender();
+        minSender.execute(new String[]{"test2", "test2","Davs med dig"});
+        if (minSender.getException() != null) {
+            Log.d(TAG, minSender.getException().toString());
+        }
     }
 
     public void onSectionAttached(int number) {
@@ -68,6 +86,8 @@ public class HovedActivity extends Activity
                 mTitle = getString(R.string.title_section3);
                 break;
         }
+
+
     }
 
     public void restoreActionBar() {
