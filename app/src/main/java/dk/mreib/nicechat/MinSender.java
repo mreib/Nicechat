@@ -25,6 +25,10 @@ public class MinSender extends AsyncTask {
     XMPPTCPConnection connection=null;
     Chat chat=null;
     Exception exception;
+    String user="";
+    String password="";
+    String friend="";
+    String mymessage="";
 
 
     private XMPPTCPConnection getConnection() throws IOException, XMPPException, SmackException {
@@ -63,7 +67,7 @@ public class MinSender extends AsyncTask {
             connection.connect();
             System.out.println("After connect");
 
-            connection.login("test2", "test2");
+            connection.login(getUser(), getPassword());
             System.out.println("After login");
             //connection.login("michael.reib@gmail.com", "3996UGH1");
         }
@@ -74,7 +78,7 @@ public class MinSender extends AsyncTask {
     public Chat getChat() throws XMPPException, IOException, SmackException {
         if (chat == null) {
             // Start a new conversation with John Doe and send him a message.
-            chat = ChatManager.getInstanceFor(getConnection()).createChat("test1@mire.dk", new ChatMessageListener() {
+            chat = ChatManager.getInstanceFor(getConnection()).createChat(getFriend(), new ChatMessageListener() {
             //chat = ChatManager.getInstanceFor(getConnection()).createChat("test1@mire.dk", new ChatMessageListener() {
                 public void processMessage(Chat chat, Message message) {
                     // Print out any messages we get back to standard out.
@@ -85,7 +89,7 @@ public class MinSender extends AsyncTask {
             });
         }
         try {
-            chat.sendMessage("Howdy!");
+            chat.sendMessage(getMymessage());
         }
         catch (XMPPException e) {
             System.out.println("Error Delivering block");
@@ -93,12 +97,44 @@ public class MinSender extends AsyncTask {
         return chat;
     }
 
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getFriend() {
+        return friend;
+    }
+
+    public void setFriend(String friend) {
+        this.friend = friend;
+    }
+
+    public String getMymessage() {
+        return mymessage;
+    }
+
+    public void setMymessage(String mymessage) {
+        this.mymessage = mymessage;
+    }
 
 /*
     protected void onPreExecute(Void void1) {
         // do nothing;
     }
 */
+
 
     @Override
     protected Object doInBackground(Object[] params) {
@@ -107,6 +143,10 @@ public class MinSender extends AsyncTask {
                 System.out.println("param = " + param);
             }
 
+            setUser((String) params[0]);
+            setPassword((String) params[1]);
+            setFriend((String) params[2]);
+            setMymessage((String) params[3]);
             getChat();
             connection.disconnect();
         } catch (XMPPException e) {

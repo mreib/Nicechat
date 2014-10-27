@@ -68,7 +68,7 @@ public class HovedActivity extends Activity
                 .commit();
 
         MinSender minSender = new MinSender();
-        minSender.execute(new String[]{"test2", "test2","Davs med dig"});
+        minSender.execute(new String[]{"test2", "test2", "test1@mire.dk", "Davs med dig:"});
         if (minSender.getException() != null) {
             Log.d(TAG, minSender.getException().toString());
         }
