@@ -54,9 +54,6 @@ public class HovedActivity extends Activity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
-
-
-
     }
 
     @Override
@@ -86,8 +83,6 @@ public class HovedActivity extends Activity
                 mTitle = getString(R.string.title_section3);
                 break;
         }
-
-
     }
 
     public void restoreActionBar() {
@@ -96,7 +91,6 @@ public class HovedActivity extends Activity
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(mTitle);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
